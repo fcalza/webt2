@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comércio Eletrônico</title>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="google-signin-scope" content="profile email">
+		<meta name="google-signin-client_id" content="439235401854-pglu0hdp15kvaj5matutj69ggvqpcjn7.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/610550089682042880/xdMbftch_400x400.jpg" />
+		<link href="css/estilos.css" rel="stylesheet"></script>
+
+</head>
+<!--<body data-spy="scroll" data-target=".navbar" data-offset="50" onload="getDados()">
+--><body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" style="margin-left: 5%" href="#">ComércioElet</a>
+			</div>
+			<div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav" id="textoMenu">
+						<li class="dropdown">
+										<a data-toggle="dropdown" class="dropdown-toggle" href="#"> Menu <b class="caret"></b></a>
+										<ul class="dropdown-menu" id="menudropdown">
+												<p  id="divisao1">Produtos</p>
+												<li><a href="http://35.198.42.142:3000/">Compra de Produtos</a></li>
+												<li><a href="http://sv.lucas.petroski.vms.ufsc.br:3000/">Avaliações e comentários sobre Produtos</a></li>
+												<li><a href="http://dev.saimon.silveira.vms.ufsc.br:3001/">Pesquisa de Produtos e Usuários</a></li>
+											<!--	<li class="divider"> </li><p  id="divisao">Cadastros</p> -->
+												<p  id="divisao">Cadastros</p>
+												<li><a href="http://150.162.244.102:3000/">Cadastrar Produto</a></li>
+												<li><a href="http://150.162.244.229:3000/">Cadastrar Usuário</a></li>
+												<p  id="divisao">Pagamentos</p>
+												<li><a href="http://web.thomas.feijoo.vms.ufsc.br:9000">Pagamento</a></li>
+												<p  id="divisao">Dashboard</p>
+												<li><a href="#section2">Relatórios</a></li>
+												<li><a href="#section3">Estatisticas</a></li>
+												<p  id="divisao">Suporte</p>
+												<li><a href="http://web.isaac.silva.vms.ufsc.br:3000/">Sugestões e suporte</a></li>
+										</ul>
+						</li>
+						<li><a href="#section2">Relatórios</a></li>
+						<li><a href="#section3">Estatisticas detalhadas</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" data-onsuccess="onSignIn">
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="50" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
+          </ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+	<div id="section1" class="container-fluid">
+		<div>
+			<div style="color: #000; font: bold ;position: absolute;margin-top:10%; margin-left: 20%">
+				<h2>Encontre os produtos que você precisa!</h2>
+				<h2 style="margin-left: 35%">Os melhores preços estão aqui!</h2>
+			</div>
+
+			<div>
+				<a href="#section2" style="color: #FFFFFF;position: absolute;margin-top: 35%;margin-left: 42%" class="btn btn-primary">Confira os Relatórios de produtos</a>
+			</div>
+			<img src="https://www.e-commerce.org.br/wp-content/uploads/2016/08/Fotolia_98459283_Subscription_Monthly_M.jpg"
+			class="img-responsive" id="img-responsive-banner">
+		</div>
+	</div>
+	<div id="section2" class="container-fluid margin-relatorios">
+		<h1 style="text-align: center;">Relatórios</h1>
+		<div id="botoesRelatorios">
+	<!--		<button type="button" class="btn btn-default">Default</button>
+			<button type="button" class="btn btn-primary">Primary</button>
+			<button type="button" class="btn btn-success">Success</button>
+			<button type="button" class="btn btn-info">Info</button>
+			<button type="button" class="btn btn-warning">Warning</button>
+			<button type="button" class="btn btn-danger">Danger</button>
+			<button type="button" class="btn btn-link">Link</button>-->
+			<input id="botaoProdutosVendidos" class="btn btn-success" TYPE="BUTTON" NAME="submit" value="Produtos vendidos" onclick="produtosVendidos()" >
+      <input id="botaoVendasCanceladas" class="btn btn-warning" TYPE="BUTTON" NAME="submit" value="Vendas canceladas" onclick="vendasCanceladas()" >
+    	<input id="botaoDesistenciaVendas" class="btn btn-danger" TYPE="BUTTON" NAME="submit" value="Desistência de vendas" onclick="desistenciaVendas()" >
+
+		</div>
+
+		<div id="chartContainer" ></div>
+	</div>
+	<div id="section3" class="container-fluid margin-estatisticas">
+		<div id="add">
+		<form id="add-texto">
+		  <input type="text" id="texto1" placeholder="texto1" class="form-control" >
+			
+
+		  <input type="text" id="texto2" placeholder="texto2" class="form-control" >
+			<div id="botaoAcaoBanco">
+				<input type="submit" name="enviar" value="Adicionar texto no banco" class="btn btn-primary">
+				<input id="mostrar-dados" class="btn btn-danger" TYPE="BUTTON" NAME="submit" value="Mostrar dados" onclick="getDados()" >
+			</div>
+		</form>
+		</div>
+
+		<div class="row">
+				<div id="resultados"> </div>
+		</div>
+
+				<div id="tabela">
+				<table style="width:70%; margin: auto; margin-top: 50px; text-align:center;">
+			<tr>
+				<th>Região</th>
+				<th>Compras</th>
+				<th>Desistências</th>
+				<th>Valor</th>
+				<th>Porcentagem total de vendas</th>
+			</tr>
+			<tr>
+				<td>Centro-Oeste</td>
+				<td>312</th>
+				<td>312</td>
+				<td>4123</td>
+				<td>3124</td>
+			</tr>
+			<tr>
+				<td>Nordeste</th>
+				<td>312</td>
+				<td>124</td>
+				<td>312</td>
+				<td>124</td>
+			</tr>
+			<tr>
+				<td>Norte</td>
+				<td>253</td>
+				<td>124</td>
+				<td>312</td>
+				<td>124</td>
+			</tr>
+			<tr>
+				<td>Sudeste</td>
+				<td>543</td>
+				<td>423</td>
+				<td>312</td>
+				<td>124</td>
+			</tr>
+			<tr>
+				<td>Sul</td>
+				<td>412</td>
+				<td>412</td>
+				<td>312</td>
+				<td>124</td>
+			</tr>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+</html>

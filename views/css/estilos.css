@@ -1,0 +1,46 @@
+body {
+  position: relative;
+}
+#textoMenu {font-size: 17px;}
+#divisao{			background-color: #E8E8E8; font-weight: bold;	margin-top: 5px;	}
+#divisao1{			background-color: #E8E8E8; font-weight: bold;	}
+#section1 {padding-top:5px;height:644px;color: #fff}
+#section2 {padding-top:50px;height:700px;}
+#section3 {padding-top:50px;height:700px;}
+#img-responsive-banner{ margin-left: 6px;}
+h2{
+     font-size: 100%;font-weight: bold; text-shadow: -1px 0 white, 0 1px white,
+  1px 0 white, 0 -1px white;
+}
+.container-fluid{
+  padding-left:0px;
+}
+#botoesRelatorios{margin-bottom: 15px; text-align: center;}
+.margin-anuncio{
+  padding: 15px 15px 15px 15px; position: relative;
+}
+.margin-estatisticas{
+  padding-left:150px;
+  padding-right:150px;
+}
+.margin-relatorios{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+#chartContainer{
+  margin-top: 20px; margin-bottom: 50px;
+  height: 50%; width: 70%;  margin: auto;
+}
+
+table, th, td {
+border: 2px solid black;
+text-align:center;
+}
+#tabela tr:nth-child(even) {
+background-color: #eee;
+}
+#botaoAcaoBanco{
+  margin: 5px;
+  text-align: center;
+}
