@@ -121,6 +121,10 @@
 					<input type="text" id="valor" name="valor2" placeholder="Valor (R$)" class="input" autofocus size="22" dir="rtl"
 						 			 onKeyUp="maskIt(this,event,'###.###.###,##',true)"
 						 			 oninvalid="this.setCustomValidity('informe um valor')"
+						 			 oninput="setCustomValidity('')" required pattern=.*\S.* maxlength="35"/></br>
+			 	 <label> Data: &nbsp </label>
+					<input type="date" id="dataOcorrencia" name="data" placeholder="Valor (R$)" autofocus size="22" dir="rtl"
+						 			 oninvalid="this.setCustomValidity('informe um valor')"
 						 			 oninput="setCustomValidity('')" required pattern=.*\S.* maxlength="35"/>
 				 </div>
 
