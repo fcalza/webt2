@@ -1,6 +1,8 @@
 var countProdVendidos =0;
 var countDesistenciaVendas=0;
 var countVendasCanceladas=0;
+
+
 function produtosVendidos () {
 
   var chart = new CanvasJS.Chart("chartContainer", {
@@ -115,23 +117,36 @@ function onSignIn(response) {
 
 $(document).ready(function(){
   $('#add').on('submit', function(e){
+
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+  dd='0'+dd
+}
+if(mm<10){mm='0'+mm}
+today = dd+mm+yyyy;
+
     e.preventDefault();
-    var texto1 = $('#texto1').val();
-    var texto2 = $('#texto2').val();
-    if(texto1== null || texto2 ==""){
+    var regiao = $('#select-regiao').val();
+    var comprasFinalizadas = $('#compras-finalizadas').val();
+    var desi = $('#desistencia').val();
+    var valor = $('#valor').val();
+    var dataAdicionado = today;
+    //    if(texto1== null || texto2 ==""){
     //$(this).css({ "border": "2px solid red" })
       //alert($(this).prev('').html() + " é obrigatório.");
-      texto1.value="Campo de preenchimento obrigatório";
-      texto1.style.color="red";
-    return false;
-    }
 
 
     $.ajax( {
       url: "https://api.mlab.com/api/1/databases/bdweb/collections/trabalhoweb?apiKey=gCbrbBf-fJLdHvKzd4eN_OwagUjimc5K",
       data: JSON.stringify({
-        "texto1" : texto1,
-        "texto2" : texto2
+        "regiao" : regiao,
+        "comprasFinalizadas" : comprasFinalizadas,
+        "desistencia" : desi,
+        "valor" : valor,
+        "dataAdd" : today
      }),
       type: "POST",
       contentType: "application/json",
@@ -144,9 +159,14 @@ $(document).ready(function(){
       }
 
       });
+      $('#select-regiao').val('');
+      $('#compras-finalizadas').val('');
+      $('#desistencia').val('');
+      $('#valor').val('');
   });
 
 });
+
 var contar=0;
 
 function getDados(){
@@ -161,8 +181,10 @@ function getDados(){
       $.each(data, function(key, data){
         output += '<div class="well">';
         output += '<h3>'+data._id["$oid"]+'</h3>';
-        output += '<p>'+data.texto1+'</p>';
-        output += '<p>'+data.texto2+'</p>';
+        output += '<p>'+data.regiao+'</p>';
+        output += '<p>'+data.comprasFinalizadas+'</p>';
+        output += '<p>'+data.desistencia+'</p>';
+        output += '<p>'+data.valor+'</p>';
         output += '</div>';
       });
       output+= '</div>';
@@ -173,3 +195,28 @@ function getDados(){
     contar = 0;
   }
 }
+
+function maskIt(w,e,m,r,a){
+// Cancela se o evento for Backspace
+if (!e) var e = window.event
+if (e.keyCode) code = e.keyCode;
+else if (e.which) code = e.which;
+// Variáveis da função
+var txt  = (!r) ? w.value.replace(/[^\d]+/gi,'') : w.value.replace(/[^\d]+/gi,'').reverse();
+var mask = (!r) ? m : m.reverse();
+var pre  = (a ) ? a.pre : "";
+var pos  = (a ) ? a.pos : "";
+var ret  = "";
+if(code == 9 || code == 8 || txt.length == mask.replace(/[^#]+/g,'').length) return false;
+// Loop na máscara para aplicar os caracteres
+for(var x=0,y=0, z=mask.length;x<z && y<txt.length;){
+if(mask.charAt(x)!='#'){
+ret += mask.charAt(x); x++; }
+else {
+ret += txt.charAt(y); y++; x++; } }
+// Retorno da função
+ret = (!r) ? ret : ret.reverse()
+w.value = pre+ret+pos; }
+// Novo método para o objeto 'String'
+String.prototype.reverse = function(){
+return this.split('').reverse().join(''); };
