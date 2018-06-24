@@ -119,26 +119,30 @@ $(document).ready(function(){
   $('#add').on('submit', function(e){
 
     var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-  dd='0'+dd
-}
-if(mm<10){mm='0'+mm}
-today = dd+mm+yyyy;
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    }
+    if(mm<10){mm='0'+mm}
+      today = dd+"/"+mm+"/"+yyyy;
 
     e.preventDefault();
     var regiao = $('#select-regiao').val();
     var comprasFinalizadas = $('#compras-finalizadas').val();
     var desi = $('#desistencia').val();
     var valor = $('#valor').val();
-    var dataAdicionado = today;
+    var dataVenda = $('#dataVenda').val();
+    var dataAdd = today;
     //    if(texto1== null || texto2 ==""){
     //$(this).css({ "border": "2px solid red" })
       //alert($(this).prev('').html() + " é obrigatório.");
 
 
+    var parts = dataVenda.split('-');
+    var dataVenda = parts[2] + '/' + parts[1] + '/' + parts[0];
+      console.log(dataVenda);
     $.ajax( {
       url: "https://api.mlab.com/api/1/databases/bdweb/collections/trabalhoweb?apiKey=gCbrbBf-fJLdHvKzd4eN_OwagUjimc5K",
       data: JSON.stringify({
@@ -146,7 +150,8 @@ today = dd+mm+yyyy;
         "comprasFinalizadas" : comprasFinalizadas,
         "desistencia" : desi,
         "valor" : valor,
-        "dataAdd" : today
+        "dataVenda" : dataVenda,
+        "dataAdd" : dataAdd
      }),
       type: "POST",
       contentType: "application/json",
@@ -157,12 +162,14 @@ today = dd+mm+yyyy;
       error:function(xhr, status, err){
         console.log(err);
       }
-
       });
+
       $('#select-regiao').val('');
       $('#compras-finalizadas').val('');
       $('#desistencia').val('');
       $('#valor').val('');
+      $('dataVenda').val();
+      $('dataAdd').val();
   });
 
 });
@@ -180,11 +187,13 @@ function getDados(){
       var output = '<div>';
       $.each(data, function(key, data){
         output += '<div class="well">';
-        output += '<h3>'+data._id["$oid"]+'</h3>';
-        output += '<p>'+data.regiao+'</p>';
-        output += '<p>'+data.comprasFinalizadas+'</p>';
-        output += '<p>'+data.desistencia+'</p>';
-        output += '<p>'+data.valor+'</p>';
+        output += '<h3>ID: '+data._id["$oid"]+'</h3>';
+        output += '<p>Região: '+data.regiao+'</p>';
+        output += '<p>Compras finalizadas: '+data.comprasFinalizadas+'</p>';
+        output += '<p>Desistencias'+data.desistencia+'</p>';
+        output += '<p>Valor: '+data.valor+'</p>';
+        output += '<p>Data da Venda: '+data.dataVenda+'</p>';
+        output += '<p>Data adicionado: '+data.dataAdd+'</p>';
         output += '</div>';
       });
       output+= '</div>';

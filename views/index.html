@@ -113,7 +113,7 @@
 						</select></br>
 					<label>Compras:</label>
 					<input type="text" id="compras-finalizadas" placeholder="Qtd. compras finalizadas"
-						 			class="input" autofocus size="20"></br>
+						 			class="input" autofocus size="22"></br>
 					<label>Desist:</label>
 					<input type="text" id="desistencia" placeholder="Qtd. Desistencia Vendas"
 						 			 class="input" autofocus size="22"></br>
@@ -122,14 +122,14 @@
 						 			 onKeyUp="maskIt(this,event,'###.###.###,##',true)"
 						 			 oninvalid="this.setCustomValidity('informe um valor')"
 						 			 oninput="setCustomValidity('')" required pattern=.*\S.* maxlength="35"/></br>
-			 	 <label> Data: &nbsp </label>
-					<input type="date" id="dataOcorrencia" name="data" placeholder="Valor (R$)" autofocus size="22" dir="rtl"
-						 			 oninvalid="this.setCustomValidity('informe um valor')"
+			 	 <label> Data Venda: &nbsp </label>
+					<input type="date" id="dataVenda" name="dataVe" autofocus dir="rtl"
+						 			 oninvalid="this.setCustomValidity('informe uma data')"
 						 			 oninput="setCustomValidity('')" required pattern=.*\S.* maxlength="35"/>
-				 </div>
+			</div>
 
 			<div id="botaoAcaoBanco">
-				<input type="submit" name="enviar" value="Adicionar texto no banco" class="btn btn-primary"  document.getElementById("#valor").val(''); >
+				<input type="submit" name="enviar" value="Adicionar texto no banco" class="btn btn-primary">
 				<input id="mostrar-dados" class="btn btn-danger" TYPE="BUTTON" NAME="submit" value="Mostrar dados" onclick="getDados()" >
 			</div>
 		</form>
