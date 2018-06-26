@@ -176,7 +176,11 @@ $(document).ready(function(){
 
 var contar=0;
 function getDados(){
-  var valorCO=0;
+var coDesis=0;
+var coFinalis=0;
+var coValor=0.0;
+var coPercent=0;
+var coValorString="";
 
   if(contar==0){$("#resultados").slideDown();
     contar=1;
@@ -190,19 +194,61 @@ function getDados(){
         output += '<h3>ID: '+data._id["$oid"]+'</h3>';
         output += '<p>Região: '+data.regiao+'</p>';
         output += '<p>Compras finalizadas: '+data.comprasFinalizadas+'</p>';
-        output += '<p>Desistencias'+data.desistencia+'</p>';
+        output += '<p>Desistencias: '+data.desistencia+'</p>';
         output += '<p>Valor: '+data.valor+'</p>';
         output += '<p>Data da Venda: '+data.dataVenda+'</p>';
         output += '<p>Data adicionado: '+data.dataAdd+'</p>';
         output += '</div>';
 
         if(data.regiao=='Centro-Oeste'){
-          var oi = parseInt(data.comprasFinalizadas);
-          valorCO+=oi;
+          var coFinalistemp = parseInt(data.comprasFinalizadas);
+          coFinalis+=coFinalistemp;
         }
+        if(data.regiao=='Centro-Oeste' && data.desistencia!=''){
+          var coDesistemp = parseInt(data.desistencia);
+          coDesis+=coDesistemp;
+        }
+        if(data.regiao=='Centro-Oeste'){
+          console.log("valor.data   "+data.valor);
+
+          //var coValortemp = parseFloat(data.valor.replace(',',''));
+          var coValortemp = data.valor.replace(',','');
+          console.log("1 "+coValortemp);
+
+          coValortemp = coValortemp.replace('.','');
+          console.log("2 "+coValortemp);
+          coValortemp = parseInt(coValortemp)/100;
+
+          coValor+=coValortemp;
+          coValorString = coValor.toString();
+          coValorString = coValorString.replace('.',',');
+          console.log("valorFINAL   " + coValorString);
+        }
+
       });
-      console.log(valorCO);
-      $('#rsrsrs').val(valorCO);
+      if(coDesis>coFinalis){
+        var coPercenttemp = (coFinalis/coDesis);
+        coPercent=coPercenttemp;
+        coPercent = coPercent.toFixed(2);
+        coPercent=coPercent.toString();
+        var percentagem = coPercent.split('.');
+        coPercent = percentagem[1] +'%';
+      }
+      if(coFinalis>coDesis){
+        var coPercenttemp = (coDesis/coFinalis);
+        coPercent=coPercenttemp;
+        coPercent = coPercent.toFixed(2);
+        coPercent=coPercent.toString();
+        var percentagem = coPercent.split('.');
+        coPercent = percentagem[1] +'%';
+      }
+
+      $('#coFinalis').val(coFinalis);
+      $('#coDesis').val(coDesis);
+      $('#coValor').val(coValorString);
+      $('#coPercent').val(coPercent);
+
+
       output+= '</div>';
       $('#resultados').html(output);
     });
@@ -213,6 +259,15 @@ function getDados(){
   $('dataAdd').val();
 
 }
+/*
+$('#valor').keyup(function(){
+    var v = $(this).val();
+    v=v.replace(/\D/g,'');
+    v=v.replace(/(\d{1,2})$/, ',$1');
+    v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    v = v != ''?'R$ '+v:'';
+    $(this).val(v);
+});*/
 
 function maskIt(w,e,m,r,a){
 // Cancela se o evento for Backspace
