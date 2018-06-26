@@ -181,6 +181,11 @@ var coFinalis=0;
 var coValor=0.0;
 var coPercent=0;
 var coValorString="";
+var noDesis=0;
+var noFinalis=0;
+var noValor=0.0;
+var noPercent=0;
+var noValorString="";
 
   if(contar==0){$("#resultados").slideDown();
     contar=1;
@@ -199,8 +204,8 @@ var coValorString="";
         output += '<p>Data da Venda: '+data.dataVenda+'</p>';
         output += '<p>Data adicionado: '+data.dataAdd+'</p>';
         output += '</div>';
-
-        if(data.regiao=='Centro-Oeste'){
+/////////////centro-Oeste
+        if(data.regiao=='Centro-Oeste' && data.comprasFinalizadas!=''){
           var coFinalistemp = parseInt(data.comprasFinalizadas);
           coFinalis+=coFinalistemp;
         }
@@ -225,7 +230,33 @@ var coValorString="";
           console.log("valorFINAL   " + coValorString);
         }
 
-      });
+
+        if(data.regiao=='Nordeste' && data.comprasFinalizadas!=''){
+          var noFinalistemp = parseInt(data.comprasFinalizadas);
+          noFinalis+=noFinalistemp;
+        }
+        if(data.regiao=='Nordeste' && data.desistencia!=''){
+          var noDesistemp = parseInt(data.desistencia);
+          noDesis+=noDesistemp;
+        }
+        if(data.regiao=='Nordeste'){
+          console.log("valor.data   "+data.valor);
+
+          //var coValortemp = parseFloat(data.valor.replace(',',''));
+          var noValortemp = data.valor.replace(',','');
+          console.log("1 "+noValortemp);
+
+          noValortemp = noValortemp.replace('.','');
+          console.log("2 "+noValortemp);
+          noValortemp = parseInt(noValortemp)/100;
+
+          noValor+=noValortemp;
+          noValorString = noValor.toString();
+          noValorString = noValorString.replace('.',',');
+          console.log("valorFINAL   " + noValorString);
+        }
+
+        });
       if(coDesis>coFinalis){
         var coPercenttemp = (coFinalis/coDesis);
         coPercent=coPercenttemp;
@@ -247,7 +278,29 @@ var coValorString="";
       $('#coDesis').val(coDesis);
       $('#coValor').val(coValorString);
       $('#coPercent').val(coPercent);
+      /////////////Nordeste
 
+      if(noDesis>noFinalis){
+      var noPercenttemp = (noFinalis/noDesis);
+      noPercent=noPercenttemp;
+      noPercent = noPercent.toFixed(2);
+      noPercent=noPercent.toString();
+      var percentagem = noPercent.split('.');
+      noPercent = percentagem[1] +'%';
+      }
+      if(noFinalis>noDesis){
+      var noPercenttemp = (noDesis/noFinalis);
+      noPercent=noPercenttemp;
+      noPercent = noPercent.toFixed(2);
+      noPercent=noPercent.toString();
+      var percentagem = noPercent.split('.');
+      noPercent = percentagem[1] +'%';
+      }
+
+      $('#noFinalis').val(noFinalis);
+      $('#noDesis').val(noDesis);
+      $('#noValor').val(noValorString);
+      $('#noPercent').val(noPercent);
 
       output+= '</div>';
       $('#resultados').html(output);
@@ -256,7 +309,7 @@ var coValorString="";
     $("#resultados").slideUp();
     contar = 0;
   }
-  $('dataAdd').val();
+  $('#dataAdd').val();
 
 }
 /*
