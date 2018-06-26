@@ -175,8 +175,8 @@ $(document).ready(function(){
 });
 
 var contar=0;
-
 function getDados(){
+  var valorCO=0;
 
   if(contar==0){$("#resultados").slideDown();
     contar=1;
@@ -195,7 +195,14 @@ function getDados(){
         output += '<p>Data da Venda: '+data.dataVenda+'</p>';
         output += '<p>Data adicionado: '+data.dataAdd+'</p>';
         output += '</div>';
+
+        if(data.regiao=='Centro-Oeste'){
+          var oi = parseInt(data.comprasFinalizadas);
+          valorCO+=oi;
+        }
       });
+      console.log(valorCO);
+      $('#rsrsrs').val(valorCO);
       output+= '</div>';
       $('#resultados').html(output);
     });
@@ -203,6 +210,8 @@ function getDados(){
     $("#resultados").slideUp();
     contar = 0;
   }
+  $('dataAdd').val();
+
 }
 
 function maskIt(w,e,m,r,a){
