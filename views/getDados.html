@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comércio Eletrônico</title>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="google-signin-scope" content="profile email">
+		<meta name="google-signin-client_id" content="439235401854-pglu0hdp15kvaj5matutj69ggvqpcjn7.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/610550089682042880/xdMbftch_400x400.jpg" />
+		<link href="css/estilos.css" rel="stylesheet"></script>
+
+</head>
+<!--<body data-spy="scroll" data-target=".navbar" data-offset="50" onload="getDados()">
+--><body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" style="margin-left: 5%" href="#">ComércioElet</a>
+			</div>
+			<div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav" id="textoMenu">
+						<li class="dropdown">
+										<a data-toggle="dropdown" class="dropdown-toggle" href="#"> Menu <b class="caret"></b></a>
+										<ul class="dropdown-menu" id="menudropdown">
+												<p  id="divisao1">Produtos</p>
+												<li><a href="http://35.198.42.142:3000/">Compra de Produtos</a></li>
+												<li><a href="http://sv.lucas.petroski.vms.ufsc.br:3000/">Avaliações e comentários sobre Produtos</a></li>
+												<li><a href="http://dev.saimon.silveira.vms.ufsc.br:3001/">Pesquisa de Produtos e Usuários</a></li>
+											<!--	<li class="divider"> </li><p  id="divisao">Cadastros</p> -->
+												<p  id="divisao">Cadastros</p>
+												<li><a href="http://150.162.244.102:3000/">Cadastrar Produto</a></li>
+												<li><a href="http://150.162.244.229:3000/">Cadastrar Usuário</a></li>
+												<p  id="divisao">Pagamentos</p>
+												<li><a href="http://web.thomas.feijoo.vms.ufsc.br:9000">Pagamento</a></li>
+												<p  id="divisao">Dashboard</p>
+												<li><a href="#section2">Relatórios</a></li>
+												<li><a href="#section3">Estatisticas</a></li>
+												<p  id="divisao">Suporte</p>
+												<li><a href="http://web.isaac.silva.vms.ufsc.br:3000/">Sugestões e suporte</a></li>
+										</ul>
+						</li>
+						<li><a href="#section2">Relatórios</a></li>
+						<li><a href="#section3">Estatisticas detalhadas</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" data-onsuccess="onSignIn">
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="50" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
+          </ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+			<script>
+			window.onload = getDadosJSON();
+			var stringify="";
+			var stringify2="";
+			function getDadosJSON(){
+			      $.ajax({
+			      url: "https://api.mlab.com/api/1/databases/bdweb/collections/trabalhoweb?apiKey=gCbrbBf-fJLdHvKzd4eN_OwagUjimc5K",
+			    }).done(function(data){
+						console.log(data)
+						$.each(data, function(key, data){
+						stringify += '<p> '+JSON.stringify(data)+'</p>';
+					});
+					$('#dado').html(stringify);
+					$('#dadosParse').html(stringify2)
+
+			    });
+
+			}
+			fetch('https://api.mlab.com/api/1/databases/bdweb/collections/trabalhoweb?apiKey=gCbrbBf-fJLdHvKzd4eN_OwagUjimc5K')
+			    .then(res => res.json())
+			    .then((out) => {
+			        console.log('Output: ', out);
+			}).catch(err => console.error(err));
+
+
+				</script>
+				<div id="dado" style="margin-top:70px"> </div>
+				<div id="#dadosParse" style="margin-top:70px"> </div>
+
+</body>
+</html>
