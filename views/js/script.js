@@ -175,17 +175,43 @@ $(document).ready(function(){
 });
 
 var contar=0;
+
 function getDados(){
 var coDesis=0;
 var coFinalis=0;
 var coValor=0.0;
 var coPercent=0;
 var coValorString="";
+
 var noDesis=0;
 var noFinalis=0;
 var noValor=0.0;
 var noPercent=0;
 var noValorString="";
+
+var ntDesis=0;
+var ntFinalis=0;
+var ntValor=0.0;
+var ntPercent=0;
+var ntValorString="";
+
+var sdDesis=0;
+var sdFinalis=0;
+var sdValor=0.0;
+var sdPercent=0;
+var sdValorString="";
+
+var sulDesis=0;
+var sulFinalis=0;
+var sulValor=0.0;
+var sulPercent=0;
+var sulValorString="";
+
+var ouDesis=0;
+var ouFinalis=0;
+var ouValor=0.0;
+var ouPercent=0;
+var ouValorString="";
 
   if(contar==0){$("#resultados").slideDown();
     contar=1;
@@ -205,107 +231,252 @@ var noValorString="";
         output += '<p>Data adicionado: '+data.dataAdd+'</p>';
         output += '</div>';
 /////////////centro-Oeste
-        if(data.regiao=='Centro-Oeste' && data.comprasFinalizadas!=''){
-          var coFinalistemp = parseInt(data.comprasFinalizadas);
-          coFinalis+=coFinalistemp;
+if(data.regiao=='Centro-Oeste' && data.comprasFinalizadas!=''){
+var coFinalistemp = parseInt(data.comprasFinalizadas);
+coFinalis+=coFinalistemp;
+}
+if(data.regiao=='Centro-Oeste' && data.desistencia!=''){
+var coDesistemp = parseInt(data.desistencia);
+coDesis+=coDesistemp;
+}
+if(data.regiao=='Centro-Oeste'){
+var coValortemp = data.valor.replace(',','');
+coValortemp = coValortemp.replace('.','');
+coValortemp = parseInt(coValortemp)/100;
+coValor+=coValortemp;
+coValorString = coValor.toString();
+coValorString = coValorString.replace('.',',');
+}
+//// Nordeste
+
+if(data.regiao=='Nordeste' && data.comprasFinalizadas!=''){
+var noFinalistemp = parseInt(data.comprasFinalizadas);
+noFinalis+=noFinalistemp;
+}
+if(data.regiao=='Nordeste' && data.desistencia!=''){
+var noDesistemp = parseInt(data.desistencia);
+noDesis+=noDesistemp;
+}
+if(data.regiao=='Nordeste'){
+var noValortemp = data.valor.replace(',','');
+noValortemp = noValortemp.replace('.','');
+noValortemp = parseInt(noValortemp)/100;
+
+noValor+=noValortemp;
+noValorString = noValor.toString();
+noValorString = noValorString.replace('.',',');
+}
+////Norte
+      if(data.regiao=='Norte' && data.comprasFinalizadas!=''){
+      var ntFinalistemp = parseInt(data.comprasFinalizadas);
+      ntFinalis+=ntFinalistemp;
+      }
+      if(data.regiao=='Norte' && data.desistencia!=''){
+      var ntDesistemp = parseInt(data.desistencia);
+      ntDesis+=ntDesistemp;
+      }
+      if(data.regiao=='Norte'){
+      var ntValortemp = data.valor.replace(',','');
+      ntValortemp = ntValortemp.replace('.','');
+      ntValortemp = parseInt(ntValortemp)/100;
+
+      ntValor+=ntValortemp;
+      ntValorString = ntValor.toString();
+      ntValorString = ntValorString.replace('.',',');
+      }
+
+////Sudeste
+        if(data.regiao=='Sudeste' && data.comprasFinalizadas!=''){
+          var sdFinalistemp = parseInt(data.comprasFinalizadas);
+          sdFinalis+=sdFinalistemp;
         }
-        if(data.regiao=='Centro-Oeste' && data.desistencia!=''){
-          var coDesistemp = parseInt(data.desistencia);
-          coDesis+=coDesistemp;
+        if(data.regiao=='Sudeste' && data.desistencia!=''){
+          var sdDesistemp = parseInt(data.desistencia);
+          sdDesis+=sdDesistemp;
         }
-        if(data.regiao=='Centro-Oeste'){
-          console.log("valor.data   "+data.valor);
-
-          //var coValortemp = parseFloat(data.valor.replace(',',''));
-          var coValortemp = data.valor.replace(',','');
-          console.log("1 "+coValortemp);
-
-          coValortemp = coValortemp.replace('.','');
-          console.log("2 "+coValortemp);
-          coValortemp = parseInt(coValortemp)/100;
-
-          coValor+=coValortemp;
-          coValorString = coValor.toString();
-          coValorString = coValorString.replace('.',',');
-          console.log("valorFINAL   " + coValorString);
+        if(data.regiao=='Sudeste'){
+          var sdValortemp = data.valor.replace(',','');
+          sdValortemp = sdValortemp.replace('.','');
+          sdValortemp = parseInt(sdValortemp)/100;
+          sdValor+=sdValortemp;
+          sdValorString = sdValor.toString();
+          sdValorString = sdValorString.replace('.',',');
+        }
+///////Sul
+        if(data.regiao=='Sul' && data.comprasFinalizadas!=''){
+          var sulFinalistemp = parseInt(data.comprasFinalizadas);
+          sulFinalis+=sulFinalistemp;
+        }
+        if(data.regiao=='Sul' && data.desistencia!=''){
+          var sulDesistemp = parseInt(data.desistencia);
+          sulDesis+=sulDesistemp;
+        }
+        if(data.regiao=='Sul'){
+          var sulValortemp = data.valor.replace(',','');
+          sulValortemp = sulValortemp.replace('.','');
+          sulValortemp = parseInt(sulValortemp)/100;
+          sulValor+=sulValortemp;
+          sulValorString = sulValor.toString();
+          sulValorString = sulValorString.replace('.',',');
+        }
+//////Outros
+        if(data.regiao=='Outros' && data.comprasFinalizadas!=''){
+          var ouFinalistemp = parseInt(data.comprasFinalizadas);
+          ouFinalis+=ouFinalistemp;
+        }
+        if(data.regiao=='Outros' && data.desistencia!=''){
+          var ouDesistemp = parseInt(data.desistencia);
+          ouDesis+=ouDesistemp;
+        }
+        if(data.regiao=='Outros'){
+          var ouValortemp = data.valor.replace(',','');
+          ouValortemp = ouValortemp.replace('.','');
+          ouValortemp = parseInt(ouValortemp)/100;
+          ouValor+=ouValortemp;
+          ouValorString = ouValor.toString();
+          ouValorString = ouValorString.replace('.',',');
         }
 
-
-        if(data.regiao=='Nordeste' && data.comprasFinalizadas!=''){
-          var noFinalistemp = parseInt(data.comprasFinalizadas);
-          noFinalis+=noFinalistemp;
-        }
-        if(data.regiao=='Nordeste' && data.desistencia!=''){
-          var noDesistemp = parseInt(data.desistencia);
-          noDesis+=noDesistemp;
-        }
-        if(data.regiao=='Nordeste'){
-          console.log("valor.data   "+data.valor);
-
-          //var coValortemp = parseFloat(data.valor.replace(',',''));
-          var noValortemp = data.valor.replace(',','');
-          console.log("1 "+noValortemp);
-
-          noValortemp = noValortemp.replace('.','');
-          console.log("2 "+noValortemp);
-          noValortemp = parseInt(noValortemp)/100;
-
-          noValor+=noValortemp;
-          noValorString = noValor.toString();
-          noValorString = noValorString.replace('.',',');
-          console.log("valorFINAL   " + noValorString);
-        }
-
-        });
-      if(coDesis>coFinalis){
+    });
+        if(coDesis>coFinalis){
         var coPercenttemp = (coFinalis/coDesis);
         coPercent=coPercenttemp;
         coPercent = coPercent.toFixed(2);
         coPercent=coPercent.toString();
         var percentagem = coPercent.split('.');
         coPercent = percentagem[1] +'%';
-      }
-      if(coFinalis>coDesis){
+        }
+        if(coFinalis>coDesis){
         var coPercenttemp = (coDesis/coFinalis);
         coPercent=coPercenttemp;
         coPercent = coPercent.toFixed(2);
         coPercent=coPercent.toString();
         var percentagem = coPercent.split('.');
         coPercent = percentagem[1] +'%';
+        }
+
+        $('#coFinalis').val(coFinalis);
+        $('#coDesis').val(coDesis);
+        $('#coValor').val(coValorString);
+        $('#coPercent').val(coPercent);
+/////////////Nordeste
+
+        if(noDesis>noFinalis){
+        var noPercenttemp = (noFinalis/noDesis);
+        noPercent=noPercenttemp;
+        noPercent = noPercent.toFixed(2);
+        noPercent=noPercent.toString();
+        var percentagem = noPercent.split('.');
+        noPercent = percentagem[1] +'%';
+        }
+        if(noFinalis>noDesis){
+        var noPercenttemp = (noDesis/noFinalis);
+        noPercent=noPercenttemp;
+        noPercent = noPercent.toFixed(2);
+        noPercent=noPercent.toString();
+        var percentagem = noPercent.split('.');
+        noPercent = percentagem[1] +'%';
+        }
+
+        $('#noFinalis').val(noFinalis);
+        $('#noDesis').val(noDesis);
+        $('#noValor').val(noValorString);
+        $('#noPercent').val(noPercent);
+
+////Norte
+        if(ntDesis>ntFinalis){
+        var ntPercenttemp = (ntFinalis/ntDesis);
+        ntPercent=ntPercenttemp;
+        ntPercent = ntPercent.toFixed(2);
+        ntPercent=ntPercent.toString();
+        var percentagem = ntPercent.split('.');
+        ntPercent = percentagem[1] +'%';
+        }
+        if(ntFinalis>ntDesis){
+        var ntPercenttemp = (ntDesis/ntFinalis);
+        ntPercent=ntPercenttemp;
+        ntPercent = ntPercent.toFixed(2);
+        ntPercent=ntPercent.toString();
+        var percentagem = ntPercent.split('.');
+        ntPercent = percentagem[1] +'%';
+        }
+
+        $('#ntFinalis').val(ntFinalis);
+        $('#ntDesis').val(ntDesis);
+        $('#ntValor').val(ntValorString);
+        $('#ntPercent').val(ntPercent);
+
+////Sudeste
+      if(sdDesis>sdFinalis){
+      var sdPercenttemp = (sdFinalis/sdDesis);
+      sdPercent=sdPercenttemp;
+      sdPercent = sdPercent.toFixed(2);
+      sdPercent=sdPercent.toString();
+      var percentagem = sdPercent.split('.');
+      sdPercent = percentagem[1] +'%';
+      }
+      if(sdFinalis>sdDesis){
+      var sdPercenttemp = (sdDesis/sdFinalis);
+      sdPercent=sdPercenttemp;
+      sdPercent = sdPercent.toFixed(2);
+      sdPercent=sdPercent.toString();
+      var percentagem = sdPercent.split('.');
+      sdPercent = percentagem[1] +'%';
       }
 
-      $('#coFinalis').val(coFinalis);
-      $('#coDesis').val(coDesis);
-      $('#coValor').val(coValorString);
-      $('#coPercent').val(coPercent);
-      /////////////Nordeste
-
-      if(noDesis>noFinalis){
-      var noPercenttemp = (noFinalis/noDesis);
-      noPercent=noPercenttemp;
-      noPercent = noPercent.toFixed(2);
-      noPercent=noPercent.toString();
-      var percentagem = noPercent.split('.');
-      noPercent = percentagem[1] +'%';
+      $('#sdFinalis').val(sdFinalis);
+      $('#sdDesis').val(sdDesis);
+      $('#sdValor').val(sdValorString);
+      $('#sdPercent').val(sdPercent);
+/////Sul
+      if(sulDesis>sulFinalis){
+      var sulPercenttemp = (sulFinalis/sulDesis);
+      sulPercent=sulPercenttemp;
+      sulPercent = sulPercent.toFixed(2);
+      sulPercent=sulPercent.toString();
+      var percentagem = sulPercent.split('.');
+      sulPercent = percentagem[1] +'%';
       }
-      if(noFinalis>noDesis){
-      var noPercenttemp = (noDesis/noFinalis);
-      noPercent=noPercenttemp;
-      noPercent = noPercent.toFixed(2);
-      noPercent=noPercent.toString();
-      var percentagem = noPercent.split('.');
-      noPercent = percentagem[1] +'%';
+      if(sulFinalis>sulDesis){
+      var sulPercenttemp = (sulDesis/sulFinalis);
+      sulPercent=sulPercenttemp;
+      sulPercent = sulPercent.toFixed(2);
+      sulPercent=sulPercent.toString();
+      var percentagem = sulPercent.split('.');
+      sulPercent = percentagem[1] +'%';
       }
 
-      $('#noFinalis').val(noFinalis);
-      $('#noDesis').val(noDesis);
-      $('#noValor').val(noValorString);
-      $('#noPercent').val(noPercent);
+      $('#sulFinalis').val(sulFinalis);
+      $('#sulDesis').val(sulDesis);
+      $('#sulValor').val(sulValorString);
+      $('#sulPercent').val(sulPercent);
+//////////Outros
+      if(ouDesis>ouFinalis){
+      var ouPercenttemp = (ouFinalis/ouDesis);
+      ouPercent=ouPercenttemp;
+      ouPercent = ouPercent.toFixed(2);
+      ouPercent=ouPercent.toString();
+      var percentagem = ouPercent.split('.');
+      ouPercent = percentagem[1] +'%';
+      }
+      if(ouFinalis>ouDesis){
+      var ouPercenttemp = (ouDesis/ouFinalis);
+      ouPercent=ouPercenttemp;
+      ouPercent = ouPercent.toFixed(2);
+      ouPercent=ouPercent.toString();
+      var percentagem = ouPercent.split('.');
+      ouPercent = percentagem[1] +'%';
+      }
 
-      output+= '</div>';
-      $('#resultados').html(output);
-    });
-  }else{
+      $('#ouFinalis').val(ouFinalis);
+      $('#ouDesis').val(ouDesis);
+      $('#ouValor').val(ouValorString);
+      $('#ouPercent').val(ouPercent);
+
+output+= '</div>';
+$('#resultados').html(output);
+});
+}else{
     $("#resultados").slideUp();
     contar = 0;
   }
