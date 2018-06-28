@@ -115,6 +115,7 @@ function onSignIn(response) {
   console.log("token: " + userToken);
 };
 
+
 $(document).ready(function(){
   $('#add').on('submit', function(e){
 
@@ -175,7 +176,7 @@ $(document).ready(function(){
 });
 
 var contar=0;
-
+window.onload = getDados();
 function getDados(){
 var coDesis=0;
 var coFinalis=0;
@@ -222,7 +223,7 @@ var ouValorString="";
       var output = '<div>';
       $.each(data, function(key, data){
         output += '<div class="well">';
-        output += '<h3>ID: '+data._id["$oid"]+'</h3>';
+      //  output += '<h3>ID: '+data._id["$oid"]+'</h3>';
         output += '<p>Região: '+data.regiao+'</p>';
         output += '<p>Compras finalizadas: '+data.comprasFinalizadas+'</p>';
         output += '<p>Desistencias: '+data.desistencia+'</p>';
